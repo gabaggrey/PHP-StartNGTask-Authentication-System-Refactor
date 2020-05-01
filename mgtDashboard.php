@@ -1,5 +1,6 @@
 <?php
 include_once("lib/header.php");
+require_once("functions/users.php");
 
 ?>
 <header>
@@ -7,9 +8,14 @@ include_once("lib/header.php");
     <h3>This Dashboard is meant for Management and Teaching staffs</h3>
 
 </header>
-<hr>
 
 <main>
+    <?php
+    if (!is_user_loggedIn()) {
+        header("Location: login.php");
+    }
+
+    ?>
     <p>We offer the best education for today's kids</p>
 
     Logged User ID : <?php print_r($_SESSION['loggedIn']); ?><br>
@@ -18,7 +24,25 @@ include_once("lib/header.php");
     Last Login Date : <?php print_r($_SESSION['userLoginDate']); ?><br>
     Last Login Time: <?php print_r($_SESSION['userLoginTime']); ?><br>
 
+    <hr>
+    <br>
+    <br>
+
+    <div class="container">
+
+        <a href="appointmentsLookup.php">
+            <button type="button" class="btn btn-primary btn-lg">See All Appointments</button>
+        </a>
+
+
+    </div>
+
 </main>
+
+
+<?php
+include("lib/footer.php");
+?>
 
 </body>
 
